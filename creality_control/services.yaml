@@ -1,0 +1,18 @@
+send_command:
+  description: "Send a command to a Creality Control device."
+  fields:
+    target:
+      description: "Select the Creality Control device."
+      selector:
+        target:
+          entity:
+            #domain: button
+            integration: creality_control
+    command:
+      description: "The command to send to the device."
+      example: "pause_resume_print"
+      selector:
+        select:
+          options:
+            - "pause_resume_print"
+            - "stop_print"

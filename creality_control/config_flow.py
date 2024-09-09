@@ -8,7 +8,9 @@ from Crypto.Util.Padding import pad
 from base64 import b64encode
 from binascii import unhexlify
 from .const import DOMAIN
+import logging
 
+_LOGGER = logging.getLogger(__name__)
 
 class CrealityControlConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Creality Control."""
