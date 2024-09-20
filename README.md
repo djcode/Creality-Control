@@ -2,6 +2,24 @@
 
 This custom integration allows Home Assistant users to monitor and control their Creality 3D printers. It offers capabilities such as viewing current print status and sending pause/resume and stop commands directly from the Home Assistant interface. This integration has been specifically tested with the Creality Halot resin printer and is based on WebSocket communication discovered through Wireshark capture while running the Halot software connected to the printer.
 
+### Updated Release Notes
+
+# Release Notes - Version 2024.38.1
+
+## New Features
+- **Wi-Fi Box Support**: Added the option to connect and control the Creality Wi-Fi Box, expanding the compatibility of the integration.
+- **New Services**: Introduced services for pausing/resuming and stopping print jobs directly from Home Assistant.
+- **Multi-Language Support**: Added translations for multiple languages, enhancing the usability for non-English speakers.
+
+## Enhancements
+- **Improved Configuration Flow**: Enhanced setup process with a new printer type selection and more robust connection handling.
+- **Sensor Improvements**: Updated existing sensors and added new ones to better support different printer types.
+- **Deprecation Warning Fixes**: Replaced deprecated functions with updated alternatives to ensure future compatibility with Home Assistant.
+
+## Bug Fixes
+- Fixed issues with data fetching and sensor state updates.
+- Resolved minor UI inconsistencies and improved error handling during setup.
+
 ## Features
 
 - **Print Status Monitoring**: Track the status of ongoing prints, including progress, remaining time, current layer, and more.
