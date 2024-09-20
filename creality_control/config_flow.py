@@ -21,9 +21,16 @@ class CrealityControlConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors = {}
 
         if user_input is not None:
-            valid = await self._test_connection(
-                user_input["host"], user_input["port"], user_input["password"]
-            )
+            # Test connection based on the selected printer type
+            if user_input["printer_type"] == "halot":
+                valid = await self._test_connection_halot(
+                    user_input["host"], user_input["port"], user_input["password"]
+                )
+            else:  # wifi_box
+                valid = await self._test_connection_wifi_box(
+                    user_input["host"], user_input["port"]
+                )
+
             if valid:
                 return self.async_create_entry(title="Creality Control", data=user_input)
             else:
@@ -32,15 +39,16 @@ class CrealityControlConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema({
+                vol.Required("printer_type", default="halot"): vol.In(["halot", "wifi_box"]),
                 vol.Required("host"): cv.string,
                 vol.Required("port", default=18188): cv.port,
-                vol.Required("password"): cv.string,
+                vol.Optional("password"): cv.string,
             }),
             errors=errors,
         )
 
-    async def _test_connection(self, host, port, password):
-        """Test connection to the Creality printer."""
+    async def _test_connection_halot(self, host, port, password):
+        """Test connection to the Halot printer."""
         uri = f"ws://{host}:{port}/"
         token = self.generate_token(password)
         try:
@@ -52,6 +60,21 @@ class CrealityControlConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         if "printStatus" in response and response["printStatus"] == "TOKEN_ERROR":
                             return False  # Token is invalid
                         return True  # Assuming any response with printStatus not TOKEN_ERROR is valid
+        except Exception as e:
+            return None  # Unable to connect
+        return None  # In case the connection could not be established or an unexpected error occurred
+
+    async def _test_connection_wifi_box(self, host, port):
+        """Test connection to the Wi-Fi Box."""
+        uri = f"http://{host}:{port}/protocal.csp?fname=Info&opt=main&function=get"
+        try:
+            async with ClientSession() as session:
+                async with session.get(uri) as resp:                    
+                    async with async_timeout.timeout(10):
+                        response = await resp.text()
+                        if "printProgress" not in response:
+                            return False 
+                        return True  # Assuming any response with printStatus is valid
         except Exception as e:
             return None  # Unable to connect
         return None  # In case the connection could not be established or an unexpected error occurred

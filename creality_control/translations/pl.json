@@ -1,18 +1,19 @@
 {
+  "title": "Creality Control",
   "config": {
     "step": {
       "user": {
         "title": "Połącz się z drukarką Creality",
-        "description": "Wprowadź adres IP i hasło do twojej drukarki Creality. Domyślny port to 18188",
+        "description": "Wybierz typ drukarki i wprowadź adres IP oraz port drukarki Creality.",
         "data": {
+          "printer_type": "Typ drukarki",
           "host": "Host",
-          "port": "Port",
-          "password": "Hasło"
+          "port": "Port"
         }
       }
     },
     "error": {
-      "cannot_connect": "Nie udało się połączyć z drukarką, sprawdź wprowadzone dane i spróbuj ponownie. Drukarka musi być online, aby można było ją dodać.",
+      "cannot_connect": "Nie udało się połączyć z drukarką, sprawdź wprowadzone dane i spróbuj ponownie.",
       "invalid_auth": "Nieprawidłowe dane uwierzytelniające.",
       "unknown": "Wystąpił nieznany błąd."
     },

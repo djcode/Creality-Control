@@ -1,18 +1,19 @@
 {
+  "title": "Creality Control",
   "config": {
     "step": {
       "user": {
         "title": "Connectez-vous à votre imprimante Creality",
-        "description": "Entrez l'adresse IP et le mot de passe de votre imprimante Creality. Le port par défaut est 18188",
+        "description": "Sélectionnez votre type d'imprimante et saisissez l'adresse IP et le port de votre imprimante Creality.",
         "data": {
+          "printer_type": "Type d'imprimante",
           "host": "Hôte",
-          "port": "Port",
-          "password": "Mot de passe"
+          "port": "Port"
         }
       }
     },
     "error": {
-      "cannot_connect": "Échec de la connexion à l'imprimante, vérifiez vos informations et réessayez. L'imprimante doit être en ligne pour pouvoir être ajoutée.",
+      "cannot_connect": "Échec de la connexion à l'imprimante, vérifiez vos informations et réessayez.",
       "invalid_auth": "Identifiants d'authentification invalides.",
       "unknown": "Une erreur inconnue est survenue."
     },

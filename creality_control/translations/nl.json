@@ -1,18 +1,19 @@
 {
+  "title": "Creality Control",
   "config": {
     "step": {
       "user": {
         "title": "Verbind met je Creality-printer",
-        "description": "Voer het IP-adres en wachtwoord in voor je Creality-printer. De standaardpoort is 18188",
+        "description": "Selecteer je printertype en voer het IP-adres en de poort van je Creality-printer in.",
         "data": {
+          "printer_type": "Printertype",
           "host": "Host",
-          "port": "Poort",
-          "password": "Wachtwoord"
+          "port": "Poort"
         }
       }
     },
     "error": {
-      "cannot_connect": "Kan geen verbinding maken met de printer, controleer je invoer en probeer het opnieuw. De printer moet online zijn om toegevoegd te kunnen worden.",
+      "cannot_connect": "Kan geen verbinding maken met de printer, controleer je invoer en probeer het opnieuw.",
       "invalid_auth": "Ongeldige authenticatiegegevens.",
       "unknown": "Er is een onbekende fout opgetreden."
     },

@@ -6,8 +6,15 @@ send_command:
       selector:
         target:
           entity:
-            #domain: button
             integration: creality_control
+    printer_type:
+      description: "Specify the type of printer (halot or wifi_box)."
+      example: "halot"
+      selector:
+        select:
+          options:
+            - "halot"
+            - "wifi_box"
     command:
       description: "The command to send to the device."
       example: "pause_resume_print"

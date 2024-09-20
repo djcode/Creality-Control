@@ -1,18 +1,19 @@
 {
+  "title": "Creality Control",
   "config": {
     "step": {
       "user": {
         "title": "Anslut till din Creality-skrivare",
-        "description": "Ange IP-adressen och lösenordet för din Creality-skrivare. Standardporten är 18188",
+        "description": "Välj din skrivartyp och ange IP-adressen och porten för din Creality-skrivare.",
         "data": {
+          "printer_type": "Skrivartyp",
           "host": "Värd",
-          "port": "Port",
-          "password": "Lösenord"
+          "port": "Port"
         }
       }
     },
     "error": {
-      "cannot_connect": "Misslyckades med att ansluta till skrivaren, kontrollera din inmatning och försök igen. Skrivaren måste vara online för att kunna läggas till.",
+      "cannot_connect": "Misslyckades med att ansluta till skrivaren, kontrollera din inmatning och försök igen.",
       "invalid_auth": "Ogiltiga autentiseringsuppgifter.",
       "unknown": "Ett okänt fel inträffade."
     },
