@@ -39,9 +39,8 @@ class CrealityDataCoordinator(DataUpdateCoordinator):
 
     async def fetch_data(self):
         uri = f"ws://{self.config['host']}:{self.config['port']}/"
-        token = self.generate_token(self.config['password'])
         async with self.session.ws_connect(uri) as ws:
-            await ws.send_json({"cmd": "GET_PRINT_STATUS", "token": token})
+            await ws.send_json({"cmd": "/"})
             async with async_timeout.timeout(10):
                 msg = await ws.receive_json()
                 if msg:
@@ -50,22 +49,13 @@ class CrealityDataCoordinator(DataUpdateCoordinator):
                     _LOGGER.error("Failed to receive data")
                     return None
 
-    def generate_token(self, password):
-        key = unhexlify("6138356539643638")
-        cipher = DES.new(key[:8], DES.MODE_ECB)
-        padded_password = pad(password.encode(), DES.block_size)
-        encrypted_password = cipher.encrypt(padded_password)
-        token = b64encode(encrypted_password).decode('utf-8')
-        return token
-
     async def send_command(self, command):
         """Send a command to the printer."""
         uri = f"ws://{self.config['host']}:{self.config['port']}/"
-        token = self.generate_token(self.config['password'])
         
         try:
             async with self.session.ws_connect(uri) as ws:
-                await ws.send_json({"cmd": command, "token": token})
+                await ws.send_json({"cmd": command})
                 _LOGGER.info(f"Sent command {command} to the printer")
                 response = await ws.receive()
                 
